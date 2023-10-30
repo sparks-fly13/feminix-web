@@ -36,7 +36,7 @@ function Dashboard() {
                 
                 {/* 1st ROW */}
                 <Box gridColumn="span 3" backgroundColor={colors.primary[400]} display="flex" alignItems="center" justifyContent="center">
-                    <Statistics title="12%" subtitle="Variation in reports" progress="0.75" increase="+15%" icon={<ArrowUpwardTwoTone sx={{color: colors.greenAccent[600], fontSize: "26px"}} />} />
+                    <Statistics title="10%" subtitle="Variation in reports" progress="0.75" increase="2%" icon={<ArrowUpwardTwoTone sx={{color: colors.redAccent[600], fontSize: "26px"}} />} />
                 </Box>
 
                 <Box gridColumn="span 9" backgroundColor={colors.primary[400]} display="flex" alignItems="center" justifyContent="center">

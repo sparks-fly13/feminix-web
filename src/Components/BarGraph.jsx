@@ -26,7 +26,8 @@ function BarGraph({isDashboard=false}) {
                         strokeWidth: 1
                     },
                     text: {
-                        fill: colors.grey[100]
+                        fill: colors.grey[100],
+                        fontSize: 6.5
                     }
                 }
             },
@@ -37,44 +38,19 @@ function BarGraph({isDashboard=false}) {
             }
         }}
         keys={[
-            'hot dog',
-            'burger',
-            'sandwich',
-            'kebab',
-            'fries',
-            'donut'
+            'Incident 1',
+            'Incident 2',
+            'Incident 3',
+            'Incident 4',
+            'Incident 5',
+            'Incident 6'
         ]}
-        indexBy="country"
+        indexBy="areas"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
         colors={{ scheme: 'red_blue' }}
-        defs={[
-            {
-                id: 'lines',
-                type: 'patternLines',
-                background: 'inherit',
-                color: '#eed312',
-                rotation: -45,
-                lineWidth: 6,
-                spacing: 10
-            }
-        ]}
-        fill={[
-            {
-                match: {
-                    id: 'fries'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'sandwich'
-                },
-                id: 'lines'
-            }
-        ]}
         borderColor={{
             from: 'color',
             modifiers: [
@@ -90,7 +66,7 @@ function BarGraph({isDashboard=false}) {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'country',
+            legend: isDashboard ? undefined : 'areas',
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -98,7 +74,7 @@ function BarGraph({isDashboard=false}) {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'food',
+            legend: isDashboard ? undefined : 'incidents',
             legendPosition: 'middle',
             legendOffset: -40
         }}
@@ -140,7 +116,7 @@ function BarGraph({isDashboard=false}) {
         ]}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={e=>e.id+": "+e.formattedValue+" in country: "+e.indexValue}
+        barAriaLabel={e=>e.id+": "+e.formattedValue+" in areas: "+e.indexValue}
     />
     )
 }

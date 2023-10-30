@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import useColors from "../Hooks/theme";
 import ProgressCircle from "./ProgressCircle";
 
-function Statistics({title, subtitle, progress, icon, increase}) {
+function Statistics({title, subtitle, progress, icon, increase = undefined, decrease = undefined}) {
     const colors = useColors();
 
     return (
@@ -23,9 +23,14 @@ function Statistics({title, subtitle, progress, icon, increase}) {
                 <Typography variant="h5" sx={{
                         color: colors.greenAccent[400]
                     }}>{subtitle}</Typography>
-                <Typography variant="h5" fontStyle="italic" sx={{
-                        color: colors.greenAccent[600]
-                    }}>{increase}</Typography>
+                <>
+                    {increase && <Typography variant="h5" sx={{
+                        color: colors.redAccent[400]
+                    }}>+{increase}</Typography>}
+                    {decrease && <Typography variant="h5" sx={{
+                        color: colors.greenAccent[400]
+                    }}>-{decrease}</Typography>}
+                </>
             </Box>
         </Box>
     )
