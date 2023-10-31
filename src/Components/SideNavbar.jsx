@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 import useColors from '../Hooks/theme';
 import {DataObject, Dashboard, Report, Map, CalendarMonth, Person, ClearAll} from '@mui/icons-material';
@@ -23,8 +23,15 @@ const Item = ({title, to, icon, selected, setSelected}) => {
 
 function SideNavbar() {
     const colors = useColors();
+    const isNonMobile = useMediaQuery('(min-width: 600px)');
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState('dashboard');
+
+    window.addEventListener('resize', () => {
+        if (!isNonMobile) {
+            setIsCollapsed(true);
+        }
+    });
 
     return (
         <Box sx={{
