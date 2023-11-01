@@ -23,15 +23,9 @@ const Item = ({title, to, icon, selected, setSelected}) => {
 
 function SideNavbar() {
     const colors = useColors();
-    const isNonMobile = useMediaQuery('(min-width: 600px)');
+    const isMobile = useMediaQuery('(max-width: 800px)');
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState('dashboard');
-
-    window.addEventListener('resize', () => {
-        if (!isNonMobile) {
-            setIsCollapsed(true);
-        }
-    });
 
     return (
         <Box sx={{
@@ -52,13 +46,13 @@ function SideNavbar() {
             },
             height: "136vh"
             }}>
-            <ProSidebar collapsed={isCollapsed}>
+            <ProSidebar collapsed={isCollapsed || isMobile}>
             <Menu>
             <MenuItem onClick={() => setIsCollapsed(!isCollapsed)}
-             icon={isCollapsed ? <ClearAll /> : undefined}
+             icon={(isCollapsed || isMobile) ? <ClearAll /> : undefined}
              style={{margin: "10px 0 20px 0", color: colors.primary[100]}}
             >
-            {!isCollapsed && (
+            {(!isCollapsed && !isMobile) && (
                 <Box display="flex" justifyContent="space-between" alignItems="center" ml="13px">
                     <Typography color={colors.primary[100]} variant="h3">ADMIN PANEL</Typography>
                     <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -69,7 +63,7 @@ function SideNavbar() {
             </MenuItem>
 
             {/* ADMIN */}
-            {!isCollapsed && (
+            {(!isCollapsed && !isMobile) && (
                 <Box mb="25px">
                     <Box display="flex" justifyContent="center" alignItems="center">
                         <Person style={{cursor: "pointer", borderRadius:"50%", height: "89px", width: "89px"}} />
@@ -82,7 +76,7 @@ function SideNavbar() {
             )}
 
             {/* SIDEBAR ITEMS */}
-            <Box marginTop={isCollapsed ? undefined : "25%"} paddingLeft={isCollapsed ? undefined : "10%"}>
+            <Box marginTop={(isCollapsed || isMobile) ? undefined : "25%"} paddingLeft={(isCollapsed || isMobile) ? undefined : "10%"}>
                 <Item title="Dashboard" to="/" icon={<Dashboard/>} selected={selected} setSelected={setSelected}/>
                 <Item title="Database" to="/database" icon={<DataObject/>} selected={selected} setSelected={setSelected}/>
                 <Item title="Reports" to="/reports" icon={<Report/>} selected={selected} setSelected={setSelected}/>
